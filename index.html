@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History of the United States</title>
+    <style>
+      :root {
+        --navy: #0b1f3a;
+        --blue: #1d4e89;
+        --red: #bf1e2e;
+        --gold: #d4af37;
+        --cream: #f7f1e3;
+        --text: #1d1d1d;
+        --muted: #586573;
+        --card: #ffffff;
+        --shadow: 0 12px 30px rgba(11, 31, 58, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(to bottom, #eef4fb, #f8f3e7);
+        color: var(--text);
+        line-height: 1.7;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .topbar {
+        background: var(--navy);
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .container {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 72px;
+      }
+
+      .brand {
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        font-size: 0.96rem;
+      }
+
+      .nav-links a {
+        opacity: 0.9;
+      }
+
+      .nav-links a:hover {
+        opacity: 1;
+      }
+
+      .hero {
+        background: linear-gradient(rgba(11, 31, 58, 0.7), rgba(11, 31, 58, 0.72)),
+          url('https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        color: white;
+        padding: 110px 0 80px;
+      }
+
+      .hero-inner {
+        max-width: 760px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        background: rgba(212, 175, 55, 0.25);
+        border: 1px solid rgba(212, 175, 55, 0.7);
+        color: #f9e7a2;
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        line-height: 1.05;
+        margin: 18px 0 16px;
+      }
+
+      .hero p {
+        font-size: 1.08rem;
+        max-width: 620px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 28px;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--gold);
+        color: var(--navy);
+      }
+
+      .btn-secondary {
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      section {
+        padding: 78px 0;
+      }
+
+      .section-header {
+        margin-bottom: 28px;
+      }
+
+      .section-header h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin: 0 0 10px;
+      }
+
+      .section-header p {
+        max-width: 720px;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .intro-grid,
+      .era-grid,
+      .facts-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 14px;
+        font-size: 1.35rem;
+        color: var(--navy);
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .timeline {
+        background: var(--navy);
+        color: white;
+      }
+
+      .timeline-wrap {
+        position: relative;
+        margin-top: 28px;
+      }
+
+      .timeline-wrap::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: rgba(212, 175, 55, 0.8);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        width: 50%;
+        position: relative;
+        padding: 22px 28px;
+      }
+
+      .timeline-item:nth-child(odd) {
+        margin-left: 0;
+      }
+
+      .timeline-item:nth-child(even) {
+        margin-left: 50%;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        top: 30px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--gold);
+        border: 4px solid var(--navy);
+      }
+
+      .timeline-item:nth-child(odd)::before {
+        right: -9px;
+      }
+
+      .timeline-item:nth-child(even)::before {
+        left: -9px;
+      }
+
+      .timeline-content {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 20px 22px;
+      }
+
+      .timeline-content h3 {
+        margin: 0 0 8px;
+        font-size: 1.3rem;
+      }
+
+      .timeline-content p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .quote {
+        background: linear-gradient(135deg, #f8efe0, #eef5ff);
+      }
+
+      blockquote {
+        margin: 0;
+        padding: 24px 28px;
+        border-left: 5px solid var(--red);
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 12px;
+        font-size: clamp(1.1rem, 2vw, 1.55rem);
+        color: var(--navy);
+        font-weight: 600;
+      }
+
+      .facts-grid .card {
+        border-top: 5px solid var(--gold);
+      }
+
+      .footer {
+        background: var(--navy);
+        color: white;
+        text-align: center;
+        padding: 24px 0;
+      }
+
+      @media (max-width: 860px) {
+        .intro-grid,
+        .era-grid,
+        .facts-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline-wrap::before {
+          left: 18px;
+        }
+
+        .timeline-item,
+        .timeline-item:nth-child(even) {
+          width: 100%;
+          margin-left: 0;
+          padding-left: 52px;
+          padding-right: 0;
+        }
+
+        .timeline-item::before,
+        .timeline-item:nth-child(even)::before,
+        .timeline-item:nth-child(odd)::before {
+          left: 10px;
+          right: auto;
+        }
+
+        .nav {
+          flex-direction: column;
+          justify-content: center;
+          padding: 16px 0;
+          gap: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand">USA HISTORY</div>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#overview">Overview</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#eras">Key Eras</a>
+          <a href="#impact">Impact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <span class="eyebrow">American Story</span>
+          <h1>The History of the United States</h1>
+          <p>
+            From the first Indigenous nations and colonial settlements to modern democracy,
+            the United States has grown through struggle, innovation, leadership, and change.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#timeline">Explore the Timeline</a>
+            <a class="btn btn-secondary" href="#overview">Learn More</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview">
+        <div class="container">
+          <div class="section-header">
+            <h2>Overview</h2>
+            <p>
+              The United States began as a collection of colonies under British rule and became
+              an independent nation in 1776. Over more than two centuries, it expanded across the
+              continent, endured civil conflict, shaped global industry, and evolved toward a more
+              inclusive democratic society.
+            </p>
+          </div>
+
+          <div class="intro-grid">
+            <article class="card">
+              <h3>Colonial Beginnings</h3>
+              <p>
+                European settlers arrived in North America beginning in the 1500s and 1600s,
+                establishing colonies that grew into a diverse society shaped by trade, faith,
+                labor, and conflict.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Independence</h3>
+              <p>
+                The Declaration of Independence in 1776 marked the beginning of a new nation,
+                inspired by Enlightenment ideas about liberty, equality, and self-government.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>National Growth</h3>
+              <p>
+                The country expanded westward, built railroads, developed industry, and faced
+                major questions about slavery, citizenship, and the meaning of equality.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="timeline" class="timeline">
+        <div class="container">
+          <div class="section-header">
+            <h2 style="color: white;">Major Timeline</h2>
+          </div>
+
+          <div class="timeline-wrap">
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3>1776</h3>
+                <p>The Declaration of Independence was adopted, formally beginning the United States.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3>1787</h3>
+                <p>The U.S. Constitution was created, establishing the framework for the federal government.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3>1803</h3>
+                <p>The Louisiana Purchase doubled the nation's size and opened the way for westward expansion.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3>1861–1865</h3>
+                <p>The Civil War challenged the country’s future and led to the end of slavery.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3>1914–1918</h3>
+                <p>The United States played a major role in World War I and emerged as a global power.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h3>1960s</h3>
+                <p>The Civil Rights Movement pushed the nation toward greater equality and justice.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="eras">
+        <div class="container">
+          <div class="section-header">
+            <h2>Key Eras in American History</h2>
+            <p>
+              Several important periods shaped the character, identity, and political structure of the United States.
+            </p>
+          </div>
+
+          <div class="era-grid">
+            <article class="card">
+              <h3>Founding Era</h3>
+              <p>
+                The nation was created through revolution, constitutional debate, and the effort to
+                build a government based on representative democracy.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Expansion Era</h3>
+              <p>
+                Territories were added, settlers moved west, and the country grew physically and economically.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Modern America</h3>
+              <p>
+                The 20th and 21st centuries brought industrial growth, social movements, technology,
+                and continuing struggles for civil rights and equality.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote">
+        <div class="container">
+          <blockquote>
+            “The United States is a nation of ideals, shaped by courage, conflict, and the ongoing
+            effort to make liberty and justice real for all people.”
+          </blockquote>
+        </div>
+      </section>
+
+      <section id="impact">
+        <div class="container">
+          <div class="section-header">
+            <h2>Why It Matters</h2>
+            <p>
+              The story of the United States is not just about events—it is about people, ideas,
+              and values that continue to influence the world today.
+            </p>
+          </div>
+
+          <div class="facts-grid">
+            <article class="card">
+              <h3>Democratic Ideas</h3>
+              <p>
+                The Constitution and Bill of Rights helped shape ideas about rights, citizenship,
+                and limited government.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Innovation</h3>
+              <p>
+                American industry, science, and technology helped transform transportation,
+                communication, and daily life around the world.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Change and Inclusion</h3>
+              <p>
+                The struggle for equality has shaped American culture, politics, and law, making
+                the country more reflective of its people.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        &copy; 2026 History of the United States
+      </div>
+    </footer>
+  </body>
+</html>
